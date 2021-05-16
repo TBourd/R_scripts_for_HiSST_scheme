@@ -11,7 +11,7 @@
 #'ggplot2, circlize and dendextend were used for the customized heatmap.
 #'
 #'It uses the files called "HiSST_ANIb_Serratia_sp.tab" and "WG_ANIb_Serratia_sp.tab",
-#'available at https://github.com/TBourd/Rscript_for_HiSST_scheme_of_S_marcescens
+#'available at https://github.com/TBourd/R_scripts_for_HiSST_scheme/tree/main/Data
 
 
 
