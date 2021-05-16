@@ -7,7 +7,7 @@
 #'The last section of this script allows to add a new HiSST profile to the database.
 #'
 #'The file 'HiSST_Database.txt' needed for this script is available 
-#'at https://github.com/TBourd/Rscript_for_HiSST_scheme_of_S_marcescens.
+#'at https://github.com/TBourd/R_scripts_for_HiSST_scheme/tree/main/Data.
 
 
   
