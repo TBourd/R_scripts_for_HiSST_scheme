@@ -78,5 +78,5 @@ Heatmap(ANIb.mat, name = "mat",
         #cluster_rows = FALSE # turn off row clustering
 )
 
-#Save as '.svg' file : width = 700 , Height = 600 
+#Save as '.svg' file : width = 700 , Height = 600  
 
