@@ -224,3 +224,14 @@ row.names(asv_tax) <- sub(">", "", asv_headers)
 write.table(asv_tax, "dhaM_ASVs_taxonomy.txt", sep="\t", quote=F)
 
 
+## Export results in a matrix of samples (rows) and AVS counts (columns), in descending order.
+
+ASV.sample <- seqtab.nochim
+colnames(ASV.sample) <- sub(">", "", asv_headers)
+
+ASV.sample.sort <- ASV.sample
+for (i in ncol(ASV.sample.sort):1) {
+  ASV.sample.sort <- ASV.sample.sort[order(-ASV.sample.sort[,i]),]
+}
+
+write.table(ASV.sample.sort, "bssA_ASV_samples.txt", sep="\t", quote=F)

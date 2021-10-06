@@ -10,7 +10,7 @@
 #'Dendextend and tidyverse packages were used for the customized Tanglegram.
 #'
 #'It uses the files called "ANIb_S_marcescens_gabR-bssA-dhaM.tab" and "ANIb_WG_S_marcescens.tab",
-#'available at https://github.com/TBourd/Rscript_for_HiSST_scheme_of_S_marcescens
+#'available at https://github.com/TBourd/R_scripts_for_HiSST_scheme/tree/main/Data.
 
 library(pvclust)
 
