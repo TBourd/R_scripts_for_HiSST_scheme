@@ -224,7 +224,7 @@ row.names(asv_tax) <- sub(">", "", asv_headers)
 write.table(asv_tax, "dhaM_ASVs_taxonomy.txt", sep="\t", quote=F)
 
 
-## Export results in a matrix of samples (rows) and AVS counts (columns), in descending order.
+### _____ Export results in a matrix of samples (rows) and AVS counts (columns), in descending order. ___ ###
 
 ASV.sample <- seqtab.nochim
 colnames(ASV.sample) <- sub(">", "", asv_headers)
@@ -234,4 +234,33 @@ for (i in ncol(ASV.sample.sort):1) {
   ASV.sample.sort <- ASV.sample.sort[order(-ASV.sample.sort[,i]),]
 }
 
-write.table(ASV.sample.sort, "bssA_ASV_samples.txt", sep="\t", quote=F)
+ASV.sample.sort <- data.frame(Samples = row.names(ASV.sample.sort),ASV.sample.sort,row.names = NULL)
+
+write.table(ASV.sample.sort, "dhaM_ASV_samples.txt", sep="\t", quote=F)
+
+
+### ____ Export a table with the sample names and their short sequence type corresponding to the targeted locus. _____ ###
+### The output is used for the R script "HiSST-Assignment.R".
+ASV.sample.mat <- seqtab.nochim
+colnames(ASV.sample.mat) <- sub(">", "", asv_headers)
+name.ST.ASV <- data.frame(ST = asv_tax[,2], ASV = row.names(asv_tax), row.names = NULL)
+
+# Change column names without any ST-ID by ASV names 
+name.STASV <- name.ST.ASV
+for (i in 1:nrow(name.STASV)) {
+  ifelse(is.na(name.STASV[i,1]),name.STASV[i,1]<-name.STASV[i,2],name.STASV[i,1])
+}
+colnames(ASV.sample.mat) <- name.STASV$ST
+
+# Compute a data frame with Sample names, and ST-ID or ASV-ID
+df <- data.frame(Samples=rownames(ASV.sample.mat), ST=nrow(ASV.sample.mat))
+for (j in 1:nrow(ASV.sample.mat)) {
+  max(ASV.sample.mat[j,]) -> x
+  for (i in 1:ncol(ASV.sample.mat)) {
+    ifelse(ASV.sample.mat[j,i] == x,
+           z <- colnames(ASV.sample.mat)[i],z <- "NA")
+    ifelse(z == "NA",NA, df$ST[j] <- z)
+  }
+}
+
+write.table(df, "dhaM_Samples_and_ASV-ST.txt", sep="\t", quote=F, row.names = F)
